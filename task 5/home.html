@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Colorful Home</title>
+    <style>
+      :root {
+        --bg: #f4f1ed;
+        --panel: #ffffff;
+        --primary: #171c2b;
+        --secondary: #2a374d;
+        --muted: #5a6475;
+        --line: #e5e1db;
+        --soft: #f8f6f3;
+        --accent: #b89a68;
+        --accent-soft: #f3ebdf;
+        --shadow: 0 18px 34px rgba(23, 28, 43, 0.08);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(180deg, #f7f3ee 0%, #f5f6f8 100%);
+        color: var(--primary);
+      }
+
+      a {
+        text-decoration: none;
+      }
+
+      .container {
+        width: min(1180px, 90%);
+        margin: 0 auto;
+      }
+
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        background: rgba(255, 255, 255, 0.82);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(23, 28, 43, 0.05);
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        min-height: 80px;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: 800;
+        font-size: 1.2rem;
+        color: var(--primary);
+      }
+
+      .brand-mark {
+        width: 38px;
+        height: 38px;
+        border-radius: 12px;
+        display: grid;
+        place-items: center;
+        background: linear-gradient(135deg, var(--primary), #2c3b58);
+        color: white;
+        box-shadow: 0 12px 24px rgba(23, 28, 43, 0.12);
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 28px;
+        align-items: center;
+        font-weight: 600;
+      }
+
+      .nav-links a {
+        color: var(--muted);
+      }
+
+      .nav-links a:hover {
+        color: var(--primary);
+      }
+
+      .nav-actions {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 12px 22px;
+        border-radius: 999px;
+        border: none;
+        font-weight: 700;
+        font-size: 0.93rem;
+        cursor: pointer;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .btn:hover {
+        transform: translateY(-1px);
+      }
+
+      .btn-primary {
+        background: var(--primary);
+        color: white;
+        box-shadow: 0 12px 24px rgba(23, 28, 43, 0.12);
+      }
+
+      .btn-secondary {
+        background: white;
+        color: var(--primary);
+        border: 1px solid rgba(23, 28, 43, 0.08);
+      }
+
+      .hero {
+        padding: 90px 0 40px;
+      }
+
+      .hero-inner {
+        display: grid;
+        grid-template-columns: 1.08fr 0.92fr;
+        gap: 44px;
+        align-items: center;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        background: var(--accent-soft);
+        color: var(--secondary);
+        padding: 9px 14px;
+        border-radius: 999px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        font-size: clamp(2.8rem, 5vw, 4.8rem);
+        line-height: 1.06;
+        margin: 22px 0 18px;
+        letter-spacing: -0.06em;
+        color: var(--primary);
+      }
+
+      .gradient-text {
+        color: var(--secondary);
+      }
+
+      .hero p {
+        color: var(--muted);
+        font-size: 1.04rem;
+        line-height: 1.8;
+        margin-bottom: 24px;
+        max-width: 600px;
+      }
+
+      .hero-actions {
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+        margin-bottom: 28px;
+      }
+
+      .mini-stats {
+        display: flex;
+        gap: 30px;
+        flex-wrap: wrap;
+      }
+
+      .mini-stats div {
+        min-width: 130px;
+      }
+
+      .mini-stats strong {
+        display: block;
+        font-size: 1.6rem;
+        margin-bottom: 6px;
+        color: var(--primary);
+      }
+
+      .mini-stats span {
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+
+      .hero-visual {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 500px;
+      }
+
+      .dashboard {
+        width: min(470px, 100%);
+        background: rgba(255, 255, 255, 0.9);
+        border: 1px solid var(--line);
+        border-radius: 30px;
+        padding: 24px;
+        box-shadow: var(--shadow);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .dashboard::before {
+        content: "";
+        position: absolute;
+        inset: -28% 54% 42% -20%;
+        background: radial-gradient(circle, rgba(184, 154, 104, 0.18), transparent 60%);
+      }
+
+      .top-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 18px;
+        position: relative;
+        z-index: 1;
+      }
+
+      .dots {
+        display: flex;
+        gap: 8px;
+      }
+
+      .dots span {
+        width: 11px;
+        height: 11px;
+        border-radius: 50%;
+        display: block;
+      }
+
+      .dots span:nth-child(1) { background: #d1b07a; }
+      .dots span:nth-child(2) { background: #7aa38d; }
+      .dots span:nth-child(3) { background: #7384a8; }
+
+      .panel {
+        position: relative;
+        z-index: 1;
+        background: linear-gradient(180deg, #ffffff, #f6f4f1);
+        border: 1px solid var(--line);
+        border-radius: 22px;
+        padding: 18px;
+      }
+
+      .panel-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 18px;
+        color: var(--muted);
+        font-weight: 700;
+      }
+
+      .chart {
+        display: flex;
+        align-items: end;
+        gap: 12px;
+        height: 120px;
+        margin-bottom: 18px;
+      }
+
+      .bar {
+        flex: 1;
+        border-radius: 10px 10px 0 0;
+        background: linear-gradient(180deg, #b89a68, #8f7652);
+      }
+
+      .bar:nth-child(2n) {
+        background: linear-gradient(180deg, #9ca9b8, #72839a);
+      }
+
+      .bar:nth-child(3n) {
+        background: linear-gradient(180deg, #99b6a3, #6d9280);
+      }
+
+      .cards {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(120px, 1fr));
+        gap: 12px;
+      }
+
+      .mini-card {
+        background: #f9f8f6;
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        padding: 16px;
+      }
+
+      .mini-card:nth-child(2) {
+        background: #f5f9f7;
+      }
+
+      .mini-card:nth-child(3) {
+        background: #f7f8fc;
+      }
+
+      .mini-card:nth-child(4) {
+        background: #faf7f2;
+      }
+
+      .mini-card strong {
+        display: block;
+        margin-top: 12px;
+        font-size: 1.35rem;
+        color: var(--primary);
+      }
+
+      .mini-card span {
+        color: var(--muted);
+        font-weight: 600;
+      }
+
+      .floating-card {
+        position: absolute;
+        background: rgba(255, 255, 255, 0.96);
+        border-radius: 16px;
+        box-shadow: var(--shadow);
+        padding: 12px 16px;
+        border: 1px solid rgba(23, 28, 43, 0.05);
+      }
+
+      .floating-card.one {
+        left: -12px;
+        bottom: 72px;
+      }
+
+      .floating-card.two {
+        right: -6px;
+        top: 58px;
+      }
+
+      .floating-card strong {
+        display: block;
+        font-size: 1.15rem;
+        color: var(--primary);
+      }
+
+      .floating-card span {
+        color: var(--muted);
+        font-size: 0.78rem;
+      }
+
+      .features {
+        padding: 70px 0 30px;
+      }
+
+      .section-head {
+        text-align: center;
+        margin-bottom: 34px;
+      }
+
+      .section-head h2 {
+        font-size: clamp(2rem, 4vw, 3rem);
+        margin: 12px 0 10px;
+        color: var(--primary);
+      }
+
+      .section-head p {
+        max-width: 620px;
+        margin: 0 auto;
+        color: var(--muted);
+        line-height: 1.8;
+      }
+
+      .feature-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 24px;
+      }
+
+      .feature-card {
+        background: rgba(255, 255, 255, 0.72);
+        border: 1px solid var(--line);
+        border-radius: 24px;
+        padding: 24px 20px;
+        box-shadow: 0 14px 28px rgba(23, 28, 43, 0.04);
+      }
+
+      .icon-wrap {
+        width: 58px;
+        height: 58px;
+        border-radius: 15px;
+        margin-bottom: 18px;
+        display: grid;
+        place-items: center;
+        color: white;
+        font-size: 1.5rem;
+        background: linear-gradient(135deg, #b89a68, #9b8359);
+      }
+
+      .purple { background: linear-gradient(135deg, #a8b4c8, #6d7e96); }
+      .gold { background: linear-gradient(135deg, #bca67b, #8f7c53); }
+      .navy { background: linear-gradient(135deg, #7384a8, #495d7f); }
+
+      .feature-card h3 {
+        margin: 0 0 10px;
+        font-size: 1.25rem;
+        color: var(--primary);
+      }
+
+      .feature-card p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.8;
+      }
+
+      .cta {
+        padding: 46px 0 90px;
+      }
+
+      .cta-box {
+        background: linear-gradient(135deg, #1a1f2d, #2a3648);
+        border-radius: 28px;
+        padding: 32px 30px;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        box-shadow: 0 22px 48px rgba(26, 31, 45, 0.16);
+      }
+
+      .cta-box h3 {
+        margin: 0 0 8px;
+        font-size: clamp(1.7rem, 3vw, 2.5rem);
+      }
+
+      .cta-box p {
+        margin: 0;
+        opacity: 0.82;
+      }
+
+      @media (max-width: 900px) {
+        .hero-inner,
+        .feature-grid,
+        .cta-box {
+          grid-template-columns: 1fr;
+          display: grid;
+        }
+
+        .nav {
+          flex-wrap: wrap;
+          gap: 12px;
+          padding: 14px 0;
+        }
+
+        .nav-links {
+          width: 100%;
+          justify-content: center;
+          order: 3;
+          gap: 16px;
+          font-size: 0.92rem;
+        }
+
+        .hero {
+          padding-top: 50px;
+        }
+      }
+
+      @media (max-width: 600px) {
+        h1 {
+          font-size: 2.5rem;
+        }
+
+        .nav-actions {
+          width: 100%;
+          justify-content: center;
+        }
+
+        .hero-actions {
+          flex-direction: column;
+          align-items: stretch;
+        }
+
+        .btn {
+          width: 100%;
+        }
+
+        .dashboard {
+          padding: 18px;
+        }
+
+        .cards {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="container nav">
+        <div class="brand">
+          <div class="brand-mark">N</div>
+          <span>Northstar</span>
+        </div>
+
+        <nav class="nav-links" aria-label="Main navigation">
+          <a href="#home">Home</a>
+          <a href="#about">Company</a>
+          <a href="#features">Solutions</a>
+          <a href="#pricing">Pricing</a>
+        </nav>
+
+        <div class="nav-actions">
+          <button class="btn btn-secondary">Sign in</button>
+          <button class="btn btn-primary">Book a call</button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" id="home">
+        <div class="container hero-inner">
+          <div>
+            <div class="eyebrow">Built for growth</div>
+            <h1>
+              Make smarter decisions with <span class="gradient-text">clarity</span>
+            </h1>
+            <p>
+              A refined operating system for modern teams—bringing strategy, execution,
+              and performance into one elegant workspace built for real business momentum.
+            </p>
+
+            <div class="hero-actions">
+              <button class="btn btn-primary">Get started</button>
+              <button class="btn btn-secondary">View demo</button>
+            </div>
+
+            <div class="mini-stats">
+              <div>
+                <strong>12k+</strong>
+                <span>Happy users</span>
+              </div>
+              <div>
+                <strong>4.9/5</strong>
+                <span>Average rating</span>
+              </div>
+              <div>
+                <strong>99.9%</strong>
+                <span>Reliable uptime</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-visual" aria-label="Dashboard preview">
+            <div class="floating-card one">
+              <strong>+42%</strong>
+              <span>Growth this quarter</span>
+            </div>
+
+            <div class="floating-card two">
+              <strong>18.4k</strong>
+              <span>Engagement score</span>
+            </div>
+
+            <div class="dashboard">
+              <div class="top-row">
+                <div class="dots">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+                <div style="font-weight: 700; color: var(--navy);">Insights</div>
+              </div>
+
+              <div class="panel">
+                <div class="panel-head">
+                  <span>Performance</span>
+                  <span style="color: #4dd4ac;">+18.5%</span>
+                </div>
+
+                <div class="chart" aria-hidden="true">
+                  <div class="bar" style="height: 52%"></div>
+                  <div class="bar" style="height: 72%"></div>
+                  <div class="bar" style="height: 68%"></div>
+                  <div class="bar" style="height: 90%"></div>
+                  <div class="bar" style="height: 78%"></div>
+                  <div class="bar" style="height: 100%"></div>
+                </div>
+
+                <div class="cards">
+                  <div class="mini-card">
+                    <span>Revenue</span>
+                    <strong>$24.8k</strong>
+                  </div>
+                  <div class="mini-card">
+                    <span>Leads</span>
+                    <strong>1,890</strong>
+                  </div>
+                  <div class="mini-card">
+                    <span>Reach</span>
+                    <strong>98k</strong>
+                  </div>
+                  <div class="mini-card">
+                    <span>CTR</span>
+                    <strong>7.8%</strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="features" id="features">
+        <div class="container">
+          <div class="section-head">
+            <div class="eyebrow">Why Northstar</div>
+            <h2>Built for teams that value precision</h2>
+            <p>
+              Align operations, improve visibility, and accelerate execution with a platform
+              designed for ambitious teams and thoughtful leadership.
+            </p>
+          </div>
+
+          <div class="feature-grid">
+            <article class="feature-card">
+              <div class="icon-wrap navy">◎</div>
+              <h3>Executive clarity</h3>
+              <p>
+                Turn fragmented reporting into clean, actionable visibility across your teams,
+                priorities, and business goals.
+              </p>
+            </article>
+
+            <article class="feature-card">
+              <div class="icon-wrap purple">⚡</div>
+              <h3>Faster execution</h3>
+              <p>
+                Simplify workflows, improve handoffs, and move from planning to delivery with
+                less friction and more focus.
+              </p>
+            </article>
+
+            <article class="feature-card">
+              <div class="icon-wrap gold">✦</div>
+              <h3>Premium reporting</h3>
+              <p>
+                Monitor results in a polished dashboard that highlights progress, risks, and the
+                next best action in real time.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="cta" id="pricing">
+        <div class="container">
+          <div class="cta-box">
+            <div>
+              <h3>Build momentum with a sharper strategy.</h3>
+              <p>Give your team the visibility, process, and focus to grow with confidence.</p>
+            </div>
+            <button class="btn btn-secondary" style="background: white; color: #1a1f2d;">
+              Schedule a demo
+            </button>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
