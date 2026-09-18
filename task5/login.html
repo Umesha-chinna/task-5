@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Sign in</title>
+	<style>
+		:root {
+			color-scheme: dark;
+			--background: #0c0d0f;
+			--panel: #15171a;
+			--border: #2a2d32;
+			--text: #f1f3f5;
+			--muted: #8c929b;
+			--accent: #d9f26c;
+			--accent-text: #15180d;
+		}
+
+		* {
+			box-sizing: border-box;
+		}
+
+		body {
+			min-height: 100vh;
+			margin: 0;
+			display: grid;
+			place-items: center;
+			padding: 24px;
+			background:
+				radial-gradient(circle at 15% 10%, #1c2416 0, transparent 28%),
+				var(--background);
+			color: var(--text);
+			font-family: "Segoe UI", Tahoma, sans-serif;
+		}
+
+		main {
+			width: min(100%, 390px);
+			padding: 36px;
+			background: rgba(21, 23, 26, 0.96);
+			border: 1px solid var(--border);
+			border-radius: 10px;
+			box-shadow: 0 24px 70px rgba(0, 0, 0, 0.35);
+		}
+
+		.mark {
+			width: 34px;
+			height: 34px;
+			margin-bottom: 28px;
+			display: grid;
+			place-items: center;
+			border-radius: 8px;
+			background: var(--accent);
+			color: var(--accent-text);
+			font-size: 18px;
+			font-weight: 800;
+		}
+
+		h1 {
+			margin: 0 0 8px;
+			font-size: 28px;
+			letter-spacing: 0;
+		}
+
+		.subtitle {
+			margin: 0 0 28px;
+			color: var(--muted);
+			font-size: 14px;
+		}
+
+		form {
+			display: grid;
+			gap: 18px;
+		}
+
+		label {
+			display: grid;
+			gap: 8px;
+			color: var(--muted);
+			font-size: 13px;
+		}
+
+		input {
+			width: 100%;
+			padding: 13px 14px;
+			border: 1px solid var(--border);
+			border-radius: 6px;
+			outline: none;
+			background: #101215;
+			color: var(--text);
+			font: inherit;
+			transition: border-color 160ms ease, box-shadow 160ms ease;
+		}
+
+		input:focus {
+			border-color: var(--accent);
+			box-shadow: 0 0 0 3px rgba(217, 242, 108, 0.12);
+		}
+
+		button {
+			margin-top: 4px;
+			padding: 13px 16px;
+			border: 0;
+			border-radius: 6px;
+			background: var(--accent);
+			color: var(--accent-text);
+			cursor: pointer;
+			font: inherit;
+			font-weight: 700;
+			transition: filter 160ms ease, transform 160ms ease;
+		}
+
+		button:hover {
+			filter: brightness(1.08);
+			transform: translateY(-1px);
+		}
+
+		.footer {
+			margin: 24px 0 0;
+			color: var(--muted);
+			font-size: 13px;
+			text-align: center;
+		}
+
+		a {
+			color: var(--text);
+			text-underline-offset: 3px;
+		}
+
+		@media (max-width: 460px) {
+			main {
+				padding: 28px 22px;
+			}
+		}
+	</style>
+</head>
+<body>
+	<main>
+		<div class="mark" aria-hidden="true">+</div>
+		<h1>Welcome back</h1>
+		<p class="subtitle">Sign in to continue.</p>
+
+		<form action="#" method="post">
+			<label for="email">
+				Email
+				<input id="email" name="email" type="email" autocomplete="email" required>
+			</label>
+
+			<label for="password">
+				Password
+				<input id="password" name="password" type="password" autocomplete="current-password" required>
+			</label>
+
+			<button type="submit">Sign in</button>
+		</form>
+
+		<p class="footer"><a href="#">Forgot password?</a></p>
+	</main>
+</body>
+</html>
